@@ -1,0 +1,280 @@
+*{margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+
+html{overflow-y:scroll}
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+    background-color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    padding:1.5rem 10%;
+    background:rgba(0,0,0,0.226);
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:1000;
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.navbar button{
+    padding:10px 16px;
+    border:1px solid rgba(0,0,0,0.2);
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:13px;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.navbar button:hover{opacity:.9}
+
+/* ================= BUTTON COLORS ================= */
+
+.upload-btn{background-color:#cc0000}
+.bg-btn{background-color:#8e44ad}
+.margin-btn{background-color:#f1c40f;color:#000!important}
+.edit-btn{background-color:#e67e22}
+.save-table-btn{background-color:#1abc9c}
+.print-table-btn{background-color:#34495e}
+.save-btn{background-color:#2ecc71}
+
+
+/* ================= CARD (FIXED हटाकर RELATIVE किया गया) ================= */
+
+.card{
+    width:240px;
+    height:380px;
+    border:1px solid #000;
+    border-radius:16px;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    overflow:hidden;
+    
+    /* ⚠️ ध्यान दें: position को fixed से बदलकर relative किया है ताकि html2canvas इसे सेव कर सके */
+    position:relative; 
+    margin: 20px auto; /* कार्ड को स्क्रीन के बीच में रखने के लिए */
+    
+    z-index:50;
+    padding-top:40px;
+    background-image:url("id.jpg");
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+/* ================= PHOTO (फोटो को दबने से रोकने के लिए सुधार) ================= */
+
+.photo{
+    width:60px;
+    height:80px;
+    border:none;
+    margin:50px auto 5px auto;
+    background:rgb(145,202,255);
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    overflow:hidden; /* फोटो डिब्बे से बाहर न जाए */
+}
+
+/* 🆕 यह नया कोड जोड़ें ताकि छात्र की फोटो गोल/पतली न होकर सही साइज में दिखे */
+.photo img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    object-fit: fill; /* यह फोटो को पूरे डिब्बे में सही से फैलाएगा */
+}
+
+/* ================= WORKSPACE (PADDING-TOP ठीक किया गया) ================= */
+
+.workspace{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    gap:20px;
+    /* ⚠️ चूंकि कार्ड अब fixed नहीं है, इसलिए ऊपर से इतनी ज्यादा 500px की खाली जगह की जरूरत नहीं है */
+    padding-top:100px; 
+    padding-bottom:50px;
+}
+
+
+/* ================= DETAILS ================= */
+
+.details{margin:10px 5px 10px 0}
+
+.details p{
+    font-size:12px;
+    font-weight:bolder;
+    margin:2px 0;
+    text-align:right;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:5px;
+}
+
+/* ================= INPUT ================= */
+
+.details input[type="text"]{
+    width:50%;
+    padding:2px 0;
+    border:none;
+    background:transparent;
+    font-size:12px;
+    font-weight:bold;
+    color:#111;
+    font-family:inherit;
+    outline:none;
+}
+
+/* ================= EXTRA ADDRESS ================= */
+
+.transparent{
+    width:100%;
+    padding:10px;
+    margin-top:19px;
+    border:none;
+    background:transparent;
+    font-size:12px;
+    font-weight:bold;
+    color:#111;
+    font-family:inherit;
+    outline:none;
+}
+
+/* ================= NEXT BUTTON ================= */
+
+#nextBtn{
+    display:block;
+    margin:8px auto;
+    padding:7px 18px;
+    border:none;
+    border-radius:5px;
+    background-color:#3498db;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    width: 600px;;
+}
+
+#nextBtn:hover{background-color:#2980b9}
+
+/* ================= TABLE ================= */
+
+.table-container{
+    width:80%;
+    max-width:1000px;
+    margin:0 auto;
+    border:1px solid #ccc;
+    border-radius:4px;
+    background-color:#fff;
+    overflow-x:auto;
+}
+
+.display-grid-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    background-color:#fff;
+}
+
+/* ================= TABLE HEADER ================= */
+
+.display-grid-table th{
+    position:sticky;
+    top:0;
+    z-index:10;
+    border:1px solid #000;
+    padding:8px 10px;
+    text-align:left;
+    background-color:#fff;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+/* ================= TABLE DATA ================= */
+
+.display-grid-table td{
+    border:1px solid #000;
+    padding:10px;
+    background-color:#fff;
+    min-height:35px;
+    color:#333;
+    white-space:nowrap;
+}
+
+/* ================= SR NO ================= */
+
+.sr-click{
+    cursor:pointer;
+    color:blue;
+    font-weight:bold;
+    text-decoration:underline;
+    text-align:center;
+}
+
+.sr-click:hover{background-color:#dfefff!important}
+
+/* ================= TABLE HOVER ================= */
+
+.display-grid-table tbody tr:hover td{background-color:#f5f5f5}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+    .navbar{
+        gap:8px;
+        padding:15px 10px;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .navbar button{
+        font-size:11px;
+        padding:8px 10px;
+    }
+
+    .table-container{width:90%}
+}
+
+@media(max-width:600px){
+    .navbar{gap:5px}
+
+    .navbar button{
+        font-size:10px;
+        padding:7px 8px;
+    }
+
+    .card{
+        width:240px;
+        height:380px;
+        top:110px;
+    }
+
+    .workspace{padding-top:500px}
+}
+

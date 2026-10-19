@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Rajverse</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at top, #3b0764, #12051f 60%, #05010a);
+
+    color: white;
+}
+
+.game-container {
+    width: 350px;
+    padding: 25px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 2px solid #38bdf8;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 25px rgba(56, 189, 248, 0.4),
+        0 0 60px rgba(168, 85, 247, 0.25);
+
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    margin-bottom: 15px;
+
+    font-size: 32px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px #c026d3,
+        0 0 20px #c026d3;
+}
+
+.turn {
+    margin-bottom: 25px;
+
+    font-size: 20px;
+
+    color: #d8b4fe;
+}
+
+#player {
+    color: #38bdf8;
+
+    font-weight: bold;
+}
+
+.board {
+    width: 270px;
+    height: 270px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.cell {
+    border: 2px solid #38bdf8;
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 55px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.cell:hover {
+    background: rgba(56, 189, 248, 0.18);
+
+    transform: scale(1.03);
+
+    box-shadow: 0 0 15px #38bdf8;
+}
+
+.restart {
+    margin-top: 20px;
+
+    padding: 12px 30px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+        90deg,
+        #9333ea,
+        #c026d3
+    );
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.restart:hover {
+    transform: scale(1.05);
+
+    box-shadow: 0 0 20px #c026d3;
+}
+
+#result {
+    min-height: 30px;
+
+    margin-top: 18px;
+
+    color: #38bdf8;
+
+    text-shadow: 0 0 10px #38bdf8;
+}
+
+.back {
+    display: block;
+
+    margin-top: 20px;
+
+    color: #d8b4fe;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+.back:hover {
+    color: #38bdf8;
+}
+</style>
+
+<body>
+
+    <div class="game-container">
+
+        <h1>🎮 TIC TAC TOE</h1>
+
+        <p class="turn">Player <span id="player">X</span>'s Turn</p>
+
+        <div class="board">
+
+            <button class="cell"></button>
+            <button class="cell"></button>
+            <button class="cell"></button>
+
+            <button class="cell"></button>
+            <button class="cell"></button>
+            <button class="cell"></button>
+
+            <button class="cell"></button>
+            <button class="cell"></button>
+            <button class="cell"></button>
+
+        </div>
+
+        <h2 id="result"></h2>
+
+        <button class="restart" onclick="restartGame()">
+            New Game
+        </button>
+
+        <a href="000portfolio.html" class="back">
+            ← Back to Portfolio
+        </a>
+
+    </div>
+
+    <script src="script.js"></script>
+<script>
+   const cells = document.querySelectorAll(".cell");
+const playerText = document.getElementById("player");
+const result = document.getElementById("result");
+
+let gameOver = false;
+let computerThinking = false;
+
+
+// Winning combinations
+const winningPatterns = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+
+// ===============================
+// PLAYER X
+// ===============================
+
+cells.forEach((cell) => {
+
+    cell.addEventListener("click", () => {
+
+        if (gameOver || computerThinking) {
+            return;
+        }
+
+        if (cell.textContent !== "") {
+            return;
+        }
+
+        // Player move
+        cell.textContent = "X";
+
+
+        // Check player win
+        if (checkWinner("X")) {
+
+            result.textContent = "🎉 You Win!";
+
+            gameOver = true;
+
+            return;
+        }
+
+
+        // Check draw
+        if (checkDraw()) {
+
+            result.textContent = "🤝 Game Draw!";
+
+            gameOver = true;
+
+            return;
+        }
+
+
+        // Computer turn
+        computerThinking = true;
+
+        playerText.textContent = "O";
+
+        setTimeout(computerMove, 500);
+
+    });
+
+});
+
+
+// ===============================
+// MEDIUM SMART COMPUTER
+// ===============================
+
+function computerMove() {
+
+    if (gameOver) {
+        return;
+    }
+
+
+    const emptyCells = [];
+
+    cells.forEach((cell, index) => {
+
+        if (cell.textContent === "") {
+
+            emptyCells.push(index);
+
+        }
+
+    });
+
+
+    if (emptyCells.length === 0) {
+        return;
+    }
+
+
+    let move = -1;
+
+
+    // --------------------------------
+    // 70% chance to think smartly
+    // --------------------------------
+
+    if (Math.random() < 0.70) {
+
+
+        // 1. Computer can win?
+        move = findWinningMove("O");
+
+
+        // 2. Player ko block karna hai?
+        if (move === -1) {
+
+            move = findWinningMove("X");
+
+        }
+
+
+        // 3. Center
+        if (move === -1 && cells[4].textContent === "") {
+
+            move = 4;
+
+        }
+
+
+        // 4. Corner
+        if (move === -1) {
+
+            const corners = [0, 2, 6, 8];
+
+            const availableCorners = corners.filter(index => {
+
+                return cells[index].textContent === "";
+
+            });
+
+
+            if (availableCorners.length > 0) {
+
+                move =
+                    availableCorners[
+                        Math.floor(
+                            Math.random() *
+                            availableCorners.length
+                        )
+                    ];
+
+            }
+
+        }
+
+    }
+
+
+    // --------------------------------
+    // Agar smart move nahi mila
+    // to normal available move
+    // --------------------------------
+
+    if (move === -1) {
+
+        move =
+            emptyCells[
+                Math.floor(
+                    Math.random() *
+                    emptyCells.length
+                )
+            ];
+
+    }
+
+
+    // Computer O
+    cells[move].textContent = "O";
+
+
+    // Computer wins?
+    if (checkWinner("O")) {
+
+        result.textContent = "🤖 Computer Wins!";
+
+        gameOver = true;
+
+        computerThinking = false;
+
+        return;
+    }
+
+
+    // Draw?
+    if (checkDraw()) {
+
+        result.textContent = "🤝 Game Draw!";
+
+        gameOver = true;
+
+        computerThinking = false;
+
+        return;
+    }
+
+
+    // Player turn
+    playerText.textContent = "X";
+
+    computerThinking = false;
+
+}
+
+
+// ===============================
+// FIND WINNING MOVE
+// ===============================
+
+function findWinningMove(player) {
+
+    for (let pattern of winningPatterns) {
+
+        const a = cells[pattern[0]].textContent;
+        const b = cells[pattern[1]].textContent;
+        const c = cells[pattern[2]].textContent;
+
+
+        if (
+            a === player &&
+            b === player &&
+            c === ""
+        ) {
+
+            return pattern[2];
+
+        }
+
+
+        if (
+            a === player &&
+            c === player &&
+            b === ""
+        ) {
+
+            return pattern[1];
+
+        }
+
+
+        if (
+            b === player &&
+            c === player &&
+            a === ""
+        ) {
+
+            return pattern[0];
+
+        }
+
+    }
+
+
+    return -1;
+
+}
+
+
+// ===============================
+// WINNER CHECK
+// ===============================
+
+function checkWinner(player) {
+
+    for (let pattern of winningPatterns) {
+
+        const a = cells[pattern[0]].textContent;
+        const b = cells[pattern[1]].textContent;
+        const c = cells[pattern[2]].textContent;
+
+
+        if (
+            a === player &&
+            b === player &&
+            c === player
+        ) {
+
+            return true;
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+// ===============================
+// DRAW CHECK
+// ===============================
+
+function checkDraw() {
+
+    for (let cell of cells) {
+
+        if (cell.textContent === "") {
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+// ===============================
+// NEW GAME
+// ===============================
+
+function restartGame() {
+
+    cells.forEach(cell => {
+
+        cell.textContent = "";
+
+    });
+
+
+    gameOver = false;
+
+    computerThinking = false;
+
+    playerText.textContent = "X";
+
+    result.textContent = "";
+
+}
+</script>
+</body>
+</html>
