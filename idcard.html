@@ -1,615 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=50.0">
-<title>Simple ID Card Interface</title>
-<link rel="stylesheet" href="idcard.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<html>
+    <head>
+       <link rel="stylesheet" href="01portfolio.css">
+       <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="02scriptportfoliyo.js" defer></script>
+    </head>
+    <body>
+    <nav class="navbar">
+    <div class="logo">RAJVERSE</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
+    <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#About">About</a></li>
+         <li><a href="#Skill">Skill</a></li>
+         <li><a href="#Projects">Projects</a></li>
+          <li><a href="#Contact">Contact</a></li>
+    </ul>
+</nav>
 
-<body>
+<section class="hero" id ="home">
+    <p class="small">WELCOME TO MY UNIVERSE</p>
+    <div class="hero-text">
 
-<div class="navbar">
-    <input type="file" id="fileInput" accept="image/*" hidden>
-    <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click()">Choose Photo 👤</button>
+        
 
-    <input type="file" id="bgInput" accept="image/*" hidden>
-    <button type="button" class="bg-btn" onclick="document.getElementById('bgInput').click()">Change Background 🎨</button>
+        <h1>HI, I'M <span >RAJ</span></h1>
 
-    <button type="button" class="margin-btn" onclick="movePhoto('up')">Photo Up ⬆️</button>
-    <button type="button" class="margin-btn" onclick="movePhoto('down')">Photo Down ⬇️</button>
+        <h2>WEB DEVELOPER</h2>
 
-    <button type="button" class="edit-btn" onclick="changeCardHeadings()">Edit Headings 📝</button>
-    <button type="button" class="print-table-btn" onclick="printTableArea()">Print Table 🖨️</button>
-    <button type="button" id ="savetabel" class="save-table-btn" onclick="savedatasupa()">Save Table 💾</button>
-    <button type="button" class="save-btn" onclick="downloadJPG()">Save as JPG 🖼️</button>
-    <button type="button" id="nextBtn" onclick="nextStudent()">Next ➡️</button>
-</div>
+        <p class="hero-description">
+            I create modern websites using HTML, CSS and JavaScript.
+        </p>
+    
+        <a href="#Contact"><button> Contact Me</button></a>
 
-<div class="workspace">
+    </div>
 
-    <div class="card" id="cardContainer">
+    <div class="hero-image">
+        <img src="rajphoto.jpg">
+    </div>
 
-        <div class="photo" id="photocontainer"></div>
+</section>
+<div class="energy-line"></div>
+<!-- ===== ABOUT SECTION START ===== -->
 
-        <div class="details">
+<section class="about" id ="About">
+
+    <h2 class="about-title">ABOUT MY UNIVERSE</h2>
+
+    <div class="about-container">
+
+        <!-- Left Side Image -->
+        <div class="about-image">
+            <img src="rajphoto.jpg" alt="Raj Photo">
+        </div>
+
+        <!-- Right Side Content -->
+        <div class="about-content">
+
+            <h3>Hi, I'm Raj 👋</h3>
 
             <p>
-                <span id="lblName">छात्र/छात्रा का नाम :-</span>
-                <input type="text" id="cardName" placeholder="नाम लिखें">
+                Main Class 9 ka student hu aur HTML, CSS, JavaScript aur
+                GitHub zero se seekh raha hu.
             </p>
 
             <p>
-                <span id="lblClass">कक्षा :-</span>
-                <input type="text" id="cardClass" placeholder="कक्षा लिखें">
+                Mera goal professional websites banana aur Full Stack Developer
+                banna hai.
             </p>
 
-            <p>
-                <span id="lblFather">पिता का नाम :-</span>
-                <input type="text" id="cardFather" placeholder="पिता का नाम लिखें">
-            </p>
+            <div class="about-cards">
 
-            <p>
-                <span id="lblMobile">मो० नं० :-</span>
-                <input type="text" id="cardMobile" placeholder="मोबाइल नंबर लिखें">
-            </p>
+                <div class="card">
+                    <h4>🎓 Education</h4>
+                    <p>Class 9 Student</p>
+                </div>
 
-            <p>
-                <span id="lblBlood">ब्लड ग्रुप :-</span>
-                <input type="text" id="cardBlood" placeholder="ब्लड ग्रुप लिखें">
-            </p>
+                <div class="card">
+                    <h4>💻 Skills</h4>
+                    <p>HTML • CSS • JavaScript</p>
+                </div>
 
-            <p>
-                <span id="lblAddress">पता :-</span>
-                <input type="text" id="cardAddress" placeholder="पता लिखें">
-            </p>
+                <div class="card">
+                    <h4>🚀 Dream</h4>
+                    <p>Become a Web Developer</p>
+                </div>
 
-            <p>
-                <input type="text" class="transparent" id="cardExtraAddress" placeholder="पता लिखें">
-            </p>
+            </div>
 
         </div>
-    </div>
-
-    <div class="table-container">
-
-        <table class="display-grid-table">
-
-            <thead>
-                <tr>
-                    <th>Sr. No.</th>
-                    <th id="thName">छात्र का नाम</th>
-                    <th id="thClass">कक्षा</th>
-                    <th id="thFather">पिता का नाम</th>
-                    <th id="thMobile">मो० नं०</th>
-                    <th id="thBlood">ब्लड ग्रुप</th>
-                    <th id="thAddress">पता</th>
-                </tr>
-            </thead>
-
-            <tbody id="tableBody"></tbody>
-
-        </table>
 
     </div>
 
-</div>
-
-<script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const SUPABASE_URL = "https://wthjxebvovhwwnvhdavm.supabase.co";
-            const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0aGp4ZWJ2b3Zod3dudmhkYXZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5ODU0NjIsImV4cCI6MjEwMzU2MTQ2Mn0.MabSdbcci02ZtpYQfJh3mZV8yhlxRiUWcth11iM4J6U";
-
-            const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-             async function loadDataFromSupabase() {
-        try {
-            // Supabase से 'idcardtabel' का पूरा डेटा मंगवाना
-            const { data, error } = await supabase
-                .from("idcardtabel")
-                .select("*");
-
-            if (error) throw error;
-
-            // टेबल को पहले खाली करना ताकि पुराना या डुप्लिकेट डेटा न दिखे
-            tableBody.innerHTML = "";
-
-            // अगर डेटा मौजूद है, तो उसे टेबल में जोड़ना
-            if (data && data.length > 0) {
-                data.forEach((row, index) => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${row.Name || "-"}</td>
-                        <td>${row.Class || "-"}</td>
-                        <td>${row["Father Name"] || "-"}</td>
-                        <td>${row["Mobile No"] || "-"}</td>
-                        <td>${row["Blood Group"] || "-"}</td>
-                        <td>${row.Addresh || "-"}</td>
-                    `;
-                    tableBody.appendChild(tr);
-                });
-                console.log("✅ Supabase से सारा डेटा टेबल में लोड हो गया!");
-            }
-        } catch (err) {
-            console.error("❌ डेटा लोड करने में एरर:", err.message);
-        }
-    }
-
-    // पेज लोड (Open) होते ही यह फंक्शन अपने आप चल जाएगा
-    loadDataFromSupabase();
-
-
-            document.getElementById("savetabel").addEventListener("click", savedatasupa);
-            
-            async function savedatasupa() { 
-                        const name = document.getElementById("cardName").value.trim();
-                        const stclass = document.getElementById("cardClass").value.trim();
-                        const fatherName = document.getElementById("cardFather").value.trim();
-                        const mobileno = document.getElementById("cardMobile").value.trim();
-                        const bloodgroup = document.getElementById("cardBlood").value.trim();
-                        const addressValue=document.getElementById("cardAddress").value.trim();
-                        const extraAddressValue=document.getElementById("cardExtraAddress").value.trim();
-                        const fullAddress=addressValue+(extraAddressValue?" "+extraAddressValue:"");
-
-                const { error } = await supabase
-                        .from("idcardtabel")
-                        .insert({
-                                    Name: name,
-                                    Class:stclass,
-                                    "Father Name":fatherName,
-                                    "Mobile No":mobileno,
-                                    "Blood Group":bloodgroup,
-                                    Addresh:fullAddress,
-                                     
-                                    
-                        }); 
-                if (error) {
-                        /*console.error("Supabase Error:", error);*/
-                        alert("❌ Data Save Nahi Hua! Error: " + error.message);
-                    } 
-                    else {
-                        alert("✅ Data aur Nayi Photo Successfully Save Ho Gaya!");
-                    }
-                    clearCard();
-
-            }
-
-            const fileInput=document.getElementById("fileInput");
-            const bgInput=document.getElementById("bgInput");
-            const photocontainer=document.getElementById("photocontainer");
-            const cardContainer=document.getElementById("cardContainer");
-            const tableBody=document.getElementById("tableBody");
-
-            let currentStudentIndex=-1;
-            let editingStudentIndex=-1;
-
-
-            /* ================= PHOTO ================= */
+</section>
 
-            fileInput.addEventListener("change",function(){
-                const file=this.files[0];
+<!-- ===== ABOUT SECTION END ===== -->
+ <!-- ===== SKILLS SECTION START ===== -->
+<div class="energy-line"></div>
+<section class="skills" id="Skill">
 
-                if(file){
-                    const reader=new FileReader();
+    <h2 class="skills-title">⚡ MY SUPER POWERS ⚡</h2>
 
-                    reader.onload=function(e){
-                        photocontainer.style.backgroundImage=`url('${e.target.result}')`;
-                    };
+    <div class="skills-grid">
 
-                    reader.readAsDataURL(file);
-                }
-            });
+        <div class="skill-card">
+            <h3>🦾 HTML</h3>
+            <p>Structure of Every Website</p>
+            <div class="bar">
+                <div class="fill html"></div>
+            </div>
+        </div>
 
+        <div class="skill-card">
+            <h3>🛡️ CSS</h3>
+            <p>Design & Animation</p>
+            <div class="bar">
+                <div class="fill css"></div>
+            </div>
+        </div>
 
-        /* ================= BACKGROUND ================= */
+        <div class="skill-card">
+            <h3>⚡ JavaScript</h3>
+            <p>Website Magic</p>
+            <div class="bar">
+                <div class="fill js"></div>
+            </div>
+        </div>
 
-        bgInput.addEventListener("change",function(){
-            const file=this.files[0];
+        <div class="skill-card">
+            <h3>🌐 GitHub</h3>
+            <p>Publish My Website</p>
+            <div class="bar">
+                <div class="fill github"></div>
+            </div>
+        </div>
 
-            if(file){
-                const reader=new FileReader();
+    </div>
 
-                reader.onload=function(e){
-                    cardContainer.style.backgroundImage=`url('${e.target.result}')`;
-                };
+</section>
 
-                reader.readAsDataURL(file);
-            }
-        });
+<!-- ===== SKILLS SECTION END ===== -->
+ <!-- ===== PROJECTS SECTION START ===== -->
+<div class="energy-line"></div>
+<section class="projects" id="Projects">
 
+    <h2 class="projects-title">🚀 MY PROJECTS</h2>
 
-/* ================= PHOTO UP / DOWN ================= */
+    <div class="projects-grid">
 
-            let currentMargin=10;
+        <!-- PROJECT 1 -->
 
-             window.movePhoto=function movePhoto(direction){
+        <div class="project-card">
 
-                        if(direction==="up"){
-                            currentMargin-=5;
-                        }
-                        else if(direction==="down"){
-                            currentMargin+=5;
-                        }
+            <img src="image.png" alt="Tic Tac Toe Game">
 
-                        photocontainer.style.marginTop=currentMargin+"px";
-                    }
+            <div class="project-content">
 
+                <h3>TIK TAK TOE</h3>
 
-/* ================= SAVE / UPDATE TABLE ================= */
+                <p>
+                    A simple Tic Tac Toe game created using
+                    html,css AND java script.
+                </p>
 
-    function moveDataToTable(){
+                <a href="001realtiktaktoefile.html" class="project-btn">
+                    View Project
+                </a>
 
-                    const nameValue=document.getElementById("cardName").value.trim();
-                    const classValue=document.getElementById("cardClass").value.trim();
-                    const fatherValue=document.getElementById("cardFather").value.trim();
-                    const mobileValue=document.getElementById("cardMobile").value.trim();
-                    const bloodValue=document.getElementById("cardBlood").value.trim();
-                    const addressValue=document.getElementById("cardAddress").value.trim();
-                    const extraAddressValue=document.getElementById("cardExtraAddress").value.trim();
+            </div>
 
-                    const fullAddress=addressValue+(extraAddressValue?" "+extraAddressValue:"");
+        </div>
 
-                    if(!nameValue&&!classValue&&!fatherValue&&!mobileValue&&!bloodValue&&!addressValue&&!extraAddressValue){
-                        alert("❌ पहले Card में information भरें!");
-                        return;
-                    }
 
+        <!-- PROJECT 2 -->
 
-                    /* ================= UPDATE EXISTING ROW ================= */
+        <div class="project-card">
 
-                    if(editingStudentIndex!==-1){
+            <img src="idcardwebpage.jpg" alt="Student ID Card">
 
-                        const row=tableBody.rows[editingStudentIndex];
+            <div class="project-content">
 
-                        if(!row){
-                            editingStudentIndex=-1;
-                            return;
-                        }
+                <h3>🪪 Student ID Card</h3>
 
-                        row.cells[1].innerText=nameValue||"-";
-                        row.cells[2].innerText=classValue||"-";
-                        row.cells[3].innerText=fatherValue||"-";
-                        row.cells[4].innerText=mobileValue||"-";
-                        row.cells[5].innerText=bloodValue||"-";
-                        row.cells[6].innerText=fullAddress||"-";
+                <p>
+                    A student ID card project created using
+                    HTML, CSS and JavaScript. and photo,students information, save in supabase.
+                </p>
 
-                        currentStudentIndex=editingStudentIndex;
+                <a href="idcard.html" class="project-btn">
+                    View Project
+                </a>
 
-                        editingStudentIndex=-1;
+            </div>
 
-                        clearCard();
+        </div>
 
-                        alert("✅ Student की information उसी row में update हो गई!");
 
-                        return;
-                    }
+        <!-- PROJECT 3 -->
 
+        <div class="project-card">
 
-                    /* ================= CREATE NEW ROW ================= */
+            <img src="tryformwebpage.png" alt="Data Management">
 
-                    const row=document.createElement("tr");
-                    const srNo=tableBody.rows.length+1;
+            <div class="project-content">
 
-                    row.innerHTML=`
-                        <td class="sr-click">${srNo}</td>
-                        <td>${nameValue||"-"}</td>
-                        <td>${classValue||"-"}</td>
-                        <td>${fatherValue||"-"}</td>
-                        <td>${mobileValue||"-"}</td>
-                        <td>${bloodValue||"-"}</td>
-                        <td>${fullAddress||"-"}</td>
-                    `;
+                <h3>💾 Data Management</h3>
 
-                    tableBody.appendChild(row);
+                <p>
+                    A simple project for storing and managing
+                    user information save in supabase.
+                </p>
 
-                    addRowClick(row);
+                <a href="test.html" class="project-btn">
+                    View Project
+                </a>
 
-                    currentStudentIndex=tableBody.rows.length-1;
+            </div>
 
-                    clearCard();
+        </div>
 
-                    alert("🎉 Data successfully table में save हो गया!");
-                }
+    </div>
 
+</section>
 
-/* ================= ROW CLICK ================= */
+<!-- ===== PROJECTS SECTION END ===== -->
+ <!-- =====CONTACT SECTION ===== -->
+<div class="energy-line"></div>
 
-    function addRowClick(row){
+<!-- ===== CONTACT SECTION ===== -->
 
-                    row.querySelector(".sr-click").addEventListener("click",function(){
+<div class="energy-line"></div>
 
-                        currentStudentIndex=Array.from(tableBody.rows).indexOf(row);
+<section class="contact" id="Contact">
 
-                        editingStudentIndex=currentStudentIndex;
+    <div class="contact-title">
+        <p>GET IN TOUCH</p>
+        <h2>CONTACT <span>ME</span></h2>
+        <h3>Let's Build Something Amazing Together</h3>
+    </div>
 
-                        loadStudentToCard(currentStudentIndex);
+    <div class="contact-container">
 
-                    });
-                }
+        <!-- LEFT SIDE -->
 
+        <div class="contact-info">
 
-/* ================= LOAD DATA TO CARD ================= */
+            <h2>Let's Talk 👋</h2>
 
-    function loadStudentToCard(index){
+            <p>
+                Kya aapke paas koi naya project idea hai ya aap
+                mere kaam aur mere baare mein aur jaanna chahte hain?
+                Mujhse contact karne mein bilkul sankoch na karein.
+                Main aapke message ka jawab dene ke liye utsuk hoon.
+            </p>
 
-                    const rows=tableBody.rows;
+            <div class="info-box">
+                <strong>📧 Email</strong>
+                <p>adityagit11@gmail.com</p>
+            </div>
 
-                    if(index<0||index>=rows.length){
-                        return;
-                    }
+            <div class="info-box">
+                <strong>📱 Phone</strong>
+                <p>+91</p>
+            </div>
 
-                    const row=rows[index];
+        </div>
 
-                    document.getElementById("cardName").value=
-                        row.cells[1].innerText==="-"?"":row.cells[1].innerText;
+        <!-- RIGHT SIDE: CONTACT FORM -->
 
-                    document.getElementById("cardClass").value=
-                        row.cells[2].innerText==="-"?"":row.cells[2].innerText;
+        <form class="contact-form" id="contact">
 
-                    document.getElementById("cardFather").value=
-                        row.cells[3].innerText==="-"?"":row.cells[3].innerText;
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+            >
 
-                    document.getElementById("cardMobile").value=
-                        row.cells[4].innerText==="-"?"":row.cells[4].innerText;
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+            >
 
-                    document.getElementById("cardBlood").value=
-                        row.cells[5].innerText==="-"?"":row.cells[5].innerText;
+            <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Subject"
+                required
+            >
 
-                    document.getElementById("cardAddress").value=
-                        row.cells[6].innerText==="-"?"":row.cells[6].innerText;
+            <textarea
+                id="message"
+                name="message"
+                placeholder="Your Message"
+                required
+            ></textarea>
 
-                    document.getElementById("cardExtraAddress").value="";
+            <button type="submit">
+                Send Message 🚀
+            </button>
 
-                    document.getElementById("cardName").focus();
-                }
+        </form>
 
-                let selectedPhotoFile = null; // फोटो फाइल को होल्ड करने के लिए वेरिएबल
+    </div>
 
-                // जब यूजर फोटो सेलेक्ट करे
-                    document.getElementById("fileInput").addEventListener("change", function() {
-                        const file = this.files[0]; // पहली फाइल को सेलेक्ट करें
-                        if (file) {
-                            selectedPhotoFile = file; // फाइल को वेरिएबल में सुरक्षित रखें
-                            
-                            // आपके हाईलाइट किए गए बॉक्स में प्रीव्यू दिखाने के लिए
-                            const reader = new FileReader();
-                            reader.onload = function(e) {
-                                const photocontainer = document.getElementById("photocontainer");
-                                if(photocontainer) {
-                                    photocontainer.style.backgroundImage = `url('${e.target.result}')`;
-                                    photocontainer.style.backgroundSize = "cover";
-                                    photocontainer.style.backgroundPosition = "center";
-                                }
-                            };
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                    async function uploadPhotoToBucket() {
-                        // अगर यूजर ने कोई फोटो सिलेक्ट नहीं की है
-                        if (!selectedPhotoFile) {
-                            alert("⚠️ कृपया पहले कोई फोटो चुनें!");
-                            return;
-                        }
+</section>
 
-                        try {
-                            // छात्र का नाम इनपुट से निकालें (फाइल नाम को यूनिक बनाने के लिए)
-                            const studentName = document.getElementById("cardName").value.trim() || "student";
-                            const fileExtension = selectedPhotoFile.name.split('.').pop();
-                            
-                            // एक यूनिक फाइल नाम बनाएं (जैसे: 171829384-ram.jpg) ताकि फोटो आपस में ओवरराइट न हों
-                            const uniqueFileName = `${Date.now()}-${studentName.replace(/\s+/g, '_')}.${fileExtension}`;
+<!-- ===== CONTACT SECTION END ===== -->
 
-                            // 🔥 फोटो को Supabase बकेट में अपलोड करें
-                            // (नोट: अगर आपकी बकेट का नाम 'idcards' नहीं है, तो नीचे 'idcards' की जगह अपना असली बकेट नाम लिखें)
-                            const { data, error } = await supabase
-                                .storage
-                                .from("idbucket") 
-                                .upload(uniqueFileName, selectedPhotoFile);
+<!-- FOOTER SECTION -->
+<footer class="footer">
 
-                            if (error) throw error;
+    <h2 class="footer-logo">RAJVERSE</h2>
 
-                            // 🔗 अपलोड होने के बाद फोटो का पब्लिक URL (लिंक) निकालना
-                            const { data: urlData } = supabase
-                                .storage
-                                .from("idbucket")
-                                .getPublicUrl(uniqueFileName);
+    <p class="footer-text">
+        Building My Own Universe, One Website at a Time.
+    </p>
 
-                            const photoPublicUrl = urlData.publicUrl;
-                            
-                            alert("🎉 फोटो Supabase की बकेट में सफलतापुर्वक सेव हो गई!");
-                            console.log("आपकी फोटो का पब्लिक लिंक यह है:", photoPublicUrl);
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#About">About</a>
+        <a href="#Skill">Skills</a>
+        <a href="#Projects">Projects</a>
+        <a href="#Contact">Contact</a>
+    </div>
 
-                            // अपलोड होने के बाद वेरिएबल और बॉक्स को खाली करें
-                            selectedPhotoFile = null;
-                            document.getElementById("photocontainer").style.backgroundImage = "none";
+    <div class="footer-line"></div>
 
-                        } catch (error) {
-                            console.error("Bucket Upload Error:", error);
-                            alert("❌ बकेट में फोटो सेव नहीं हुई! एरर: " + error.message);
-                        }
-                    }
+    <p class="copyright">
+        © 2026 RAJVERSE. All Rights Reserved.
+    </p>
 
-
-
-/* ================= NEXT STUDENT ================= */
-
-    function nextStudent(){
-
-                    const totalStudents=tableBody.rows.length;
-
-                    if(totalStudents===0){
-                        alert("❌ Table में अभी कोई student नहीं है!");
-                        return;
-                    }
-
-                    if(currentStudentIndex===-1){
-                        currentStudentIndex=0;
-                    }
-                    else{
-                        currentStudentIndex++;
-                    }
-
-                    if(currentStudentIndex>=totalStudents){
-
-                        currentStudentIndex=totalStudents-1;
-
-                        alert("ℹ️ यह आखिरी student है। अगला record उपलब्ध नहीं है!");
-
-                        return;
-                    }
-
-                    editingStudentIndex=currentStudentIndex;
-
-                    loadStudentToCard(currentStudentIndex);
-                }
-
-
-/* ================= CLEAR CARD ================= */
-
-    function clearCard(){
-
-                    document.getElementById("cardName").value="";
-                    document.getElementById("cardClass").value="";
-                    document.getElementById("cardFather").value="";
-                    document.getElementById("cardMobile").value="";
-                    document.getElementById("cardBlood").value="";
-                    document.getElementById("cardAddress").value="";
-                    document.getElementById("cardExtraAddress").value="";
-
-                    currentStudentIndex=-1;
-                    editingStudentIndex=-1;
-
-                    document.getElementById("cardName").focus();
-                }
-
-
-/* ================= EDIT HEADINGS ================= */
-
-window.changeCardHeadings=function changeCardHeadings(){
-                    let newName=prompt(
-                        "1. 'छात्र/छात्रा का नाम :-' की जगह क्या लिखना चाहते हैं?",
-                        document.getElementById("lblName").innerText
-                    );
-
-                    if(newName!==null){
-                        document.getElementById("lblName").innerText=newName;
-                        document.getElementById("thName").innerText=newName.replace(" :-","");
-                    }
-
-
-                    let newClass=prompt(
-                        "2. 'कक्षा :-' की जगह क्या लिखना चाहते हैं?",
-                        document.getElementById("lblClass").innerText
-                    );
-
-                    if(newClass!==null){
-                        document.getElementById("lblClass").innerText=newClass;
-                        document.getElementById("thClass").innerText=newClass.replace(" :-","");
-                    }
-
-
-                    let newFather=prompt(
-                        "3. 'पिता का नाम :-' की जगह क्या लिखना चाहते हैं?",
-                        document.getElementById("lblFather").innerText
-                    );
-
-                    if(newFather!==null){
-                        document.getElementById("lblFather").innerText=newFather;
-                        document.getElementById("thFather").innerText=newFather.replace(" :-","");
-                    }
-
-
-                    let newMobile=prompt(
-                        "4. 'मो० नं० :-' की जगह क्या लिखना चाहते हैं?",
-                        document.getElementById("lblMobile").innerText
-                    );
-
-                    if(newMobile!==null){
-                        document.getElementById("lblMobile").innerText=newMobile;
-                        document.getElementById("thMobile").innerText=newMobile.replace(" :-","");
-                    }
-
-
-                    let newBlood=prompt(
-                        "5. 'ब्लड ग्रुप :-' की जगह क्या लिखना चाहते हैं?",
-                        document.getElementById("lblBlood").innerText
-                    );
-
-                    if(newBlood!==null){
-                        document.getElementById("lblBlood").innerText=newBlood;
-                        document.getElementById("thBlood").innerText=newBlood.replace(" :-","");
-                    }
-
-
-                    let newAddress=prompt(
-                        "6. 'पता :-' की जगह क्या लिखना चाहते हैं?",
-                        document.getElementById("lblAddress").innerText
-                    );
-
-                    if(newAddress!==null){
-                        document.getElementById("lblAddress").innerText=newAddress;
-                        document.getElementById("thAddress").innerText=newAddress.replace(" :-","");
-                    }
-}
- /* ================= 🔁 SUPABASE से डेटा लाकर टेबल में दिखाना ================= */
-   
-
-
-/* ================= PRINT TABLE ================= */
-
-    function printTableArea(){
-
-                    if(tableBody.rows.length===0){
-                        alert("❌ Table में कोई data नहीं है!");
-                        return;
-                    }
-
-                    const tableHTML=document.querySelector(".table-container").outerHTML;
-                    const printWindow=window.open("","_blank");
-
-                    printWindow.document.write(tableHTML); 
-
-                    printWindow.document.close();
-                    printWindow.print();
-                }
-
-
-/* ================= SAVE AS JPG ================= */
-
-/* ================= बिना लाइव सर्वर के चलने वाला फंक्शन ================= */
-/* ================= बिना लाइव सर्वर के चलने वाला सेव फंक्शन ================= */
-            window.downloadJPG=function downloadJPG(){
-                    if(typeof html2canvas === "undefined"){
-                        alert("❌ html2canvas library load नहीं हुई!");
-                        return;
-                    }
-
-                    if(!cardContainer){
-                        alert("❌ Card container नहीं मिला!");
-                        return;
-                    }
-
-                    // F5 से सीधे चलाने के लिए useCORS और allowTaint को false किया गया है
-                    html2canvas(cardContainer, {
-                        scale: 4, 
-                        useCORS: false,      // इसे false रखें
-                        allowTaint: false,    // इसे भी false रखें
-                        backgroundColor: null
-                    }).then(function(canvas){
-                        const link = document.createElement('a');
-                        link.download = "student-id-card.jpg";
-                        link.href = canvas.toDataURL("image/jpeg", 1.0);
-                        link.click();
-                    }).catch(function(error){
-                        console.error("Error details:", error);
-                        alert("❌ JPG save नहीं हो पाया।");
-                    });
-                }
-});
-
-</script>
+</footer>
 </body>
 </html>
