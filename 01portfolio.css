@@ -264,11 +264,13 @@
    HERO IMAGE
 ===================================================== */
 
+
 .hero-image {
     position: relative;
-
     z-index: 3;
-
+    width: 330px;
+    flex-shrink: 0;
+    margin-right: 20px;
     animation: photoEntry 1.5s ease-out;
 }
 
