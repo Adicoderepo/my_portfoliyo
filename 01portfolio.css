@@ -264,13 +264,11 @@
    HERO IMAGE
 ===================================================== */
 
-
 .hero-image {
     position: relative;
+
     z-index: 3;
-    width: 330px;
-    flex-shrink: 0;
-    margin-right: 50px;
+
     animation: photoEntry 1.5s ease-out;
 }
 
@@ -1057,55 +1055,3 @@
     margin: 0;
     letter-spacing: 0.5px;
 }
-
-/* Mobile Responsive */
-
-@media (max-width: 600px) {
-    .footer {
-        padding: 40px 15px 22px;
-    }
-
-    .footer-logo {
-        font-size: 27px;
-    }
-
-    .footer-text {
-        font-size: 13px;
-        line-height: 1.7;
-    }
-
-    .footer-links {
-        gap: 18px;
-    }
-
-    .footer-links a {
-        font-size: 14px;
-    }
-
-    .footer-line {
-        width: 95%;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .contact {
-        padding: 80px 5%;
-    }
-
-    .contact-title h2 {
-        font-size: 35px;
-    }
-
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-}
-
