@@ -263,7 +263,7 @@
 /* =====================================================
    HERO IMAGE
 ===================================================== */
-hero-image {
+.hero-image {
     position: relative;
 
     z-index: 3;
@@ -282,13 +282,14 @@ hero-image {
     width: 390px;
     height: 390px;
 
-    top: 50%;
+    top: 0%;
     left: 50%;
 
     transform: translate(-50%, -50%);
 
+    border: 2px solid rgba(168, 85, 247, 0.7);
 
-  
+    border-radius: 50%;
 
     box-shadow:
         0 0 20px #a855f7,
@@ -318,9 +319,9 @@ hero-image {
 .hero-image img {
     width: 330px;
 
+    border-radius: 50%;
 
-
-   
+    border: 5px solid #E50914;
 
     box-shadow:
         0 0 20px #E50914,
