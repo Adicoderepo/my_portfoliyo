@@ -368,6 +368,8 @@
     }
 }
 
+
+
 /* =====================================================
    ENERGY LINE
 ===================================================== */
@@ -1048,48 +1050,25 @@
 }
 
 
-/* =========================================
-   RAJVERSE - MOBILE RESPONSIVE DESIGN
-   Nayi CSS: purani CSS ko mat badalna
-========================================= */
+/* MOBILE LAYOUT */
 
-/* TABLET: 768px ya usse chhoti screen */
 @media (max-width: 768px) {
 
-    /* NAVBAR */
-    .navbar {
-        padding: 15px 4%;
-    }
-
-    .logo {
-        font-size: 24px;
-    }
-
-    .menu {
-        gap: 14px;
-    }
-
-    .menu a {
-        font-size: 14px;
-    }
-
-    /* HERO SECTION */
     .hero {
         height: auto;
-        min-height: 100vh;
+        min-height: 100svh;
         flex-direction: column;
         justify-content: center;
-        gap: 35px;
-        padding: 160px 5% 50px;
+        gap: 40px;
+        padding: 150px 6% 60px;
     }
 
     .small {
-        top: 95px;
-        left: 0;
-        width: 100%;
-        padding: 0 10px;
-        font-size: 24px;
+        top: 115px;
+        font-size: clamp(16px, 4vw, 24px);
         letter-spacing: 2px;
+        padding: 0 16px;
+        box-sizing: border-box;
     }
 
     .hero-text {
@@ -1099,56 +1078,58 @@
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: clamp(40px, 10vw, 56px);
     }
 
     .hero h2 {
-        font-size: 30px;
+        font-size: clamp(25px, 7vw, 36px);
         letter-spacing: 2px;
     }
 
     .hero-description {
         font-size: 16px;
-        line-height: 25px;
+        line-height: 1.6;
     }
 
-    /* HERO PHOTO */
     .hero-image {
-        width: 320px;
-        height: 320px;
-        max-width: 100%;
+        width: min(78vw, 340px);
+        height: auto;
+        aspect-ratio: 1;
+        flex: 0 0 auto;
     }
 
     .hero-image::before {
-        width: 300px;
-        height: 300px;
-        max-width: 100%;
-        max-height: 100%;
+        width: 92%;
+        height: auto;
+        aspect-ratio: 1;
     }
 
     .hero-image img {
-        width: 250px;
-        height: 250px;
-        max-width: 85%;
-        max-height: 85%;
+        width: 78%;
+        height: auto;
+        aspect-ratio: 1;
     }
 
-    /* ABOUT */
-    .about {
-        padding: 70px 5%;
+    .about,
+    .skills,
+    .projects,
+    .contact {
+        min-height: 0;
+        padding: 72px 6%;
+        scroll-margin-top: 100px;
     }
 
     .about-title,
     .skills-title,
     .projects-title {
-        font-size: 36px;
-        margin-bottom: 35px;
+        font-size: clamp(30px, 8vw, 42px);
+        letter-spacing: 1px;
+        margin-bottom: 36px;
     }
 
     .about-container {
         flex-direction: column;
-        gap: 30px;
-        text-align: center;
+        gap: 32px;
     }
 
     .about-image,
@@ -1156,192 +1137,98 @@
         width: 100%;
     }
 
+    .about-image {
+        text-align: center;
+    }
+
     .about-image img {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .about-cards {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .card {
-        min-width: 200px;
-    }
-
-    /* SKILLS */
-    .skills {
-        padding: 70px 5%;
-    }
-
-    /* PROJECTS */
-    .projects {
-        padding: 70px 5%;
-    }
-
-    .projects-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    .project-card img {
-        height: 200px;
-    }
-
-    .project-content {
-        padding: 18px;
-    }
-
-    /* CONTACT */
-    .contact {
-        padding: 70px 5%;
-    }
-
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .contact-title h2 {
-        font-size: 36px;
-    }
-}
-
-
-/* MOBILE: 480px ya usse chhoti screen */
-@media (max-width: 480px) {
-
-    /* NAVBAR */
-    .navbar {
-        padding: 12px 3%;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .logo {
-        font-size: 21px;
-    }
-
-    .menu {
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .menu a {
-        font-size: 12px;
-    }
-
-    /* HERO */
-    .hero {
-        padding: 145px 5% 40px;
-        gap: 30px;
-    }
-
-    .small {
-        top: 100px;
-        font-size: 17px;
-        letter-spacing: 1px;
-    }
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero h2 {
-        font-size: 24px;
-        letter-spacing: 1px;
-    }
-
-    .hero-description {
-        font-size: 15px;
-        line-height: 24px;
-    }
-
-    .hero-image {
-        width: 270px;
-        height: 270px;
-    }
-
-    .hero-image::before {
-        width: 255px;
-        height: 255px;
-    }
-
-    .hero-image img {
-        width: 215px;
-        height: 215px;
-    }
-
-    /* ABOUT */
-    .about-title,
-    .skills-title,
-    .projects-title {
-        font-size: 28px;
-        letter-spacing: 1px;
+        width: min(100%, 300px);
+        height: auto;
     }
 
     .about-content h3 {
-        font-size: 27px;
+        font-size: 28px;
     }
 
     .about-cards {
         flex-direction: column;
+        gap: 16px;
     }
 
     .card {
-        min-width: 0;
-        width: 100%;
+        padding: 20px;
     }
 
-    /* SKILLS */
+    .skills-grid {
+        row-gap: 20px;
+    }
+
     .skill-card {
         padding: 20px;
     }
 
-    .skill-card h3 {
-        font-size: 21px;
-    }
-
-    /* PROJECTS */
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .project-card img {
-        height: 220px;
+        height: auto;
+        aspect-ratio: 16 / 10;
     }
 
-    /* CONTACT */
+    .project-content {
+        padding: 20px;
+    }
+
+    .contact-title {
+        margin-bottom: 36px;
+    }
+
     .contact-title h2 {
-        font-size: 29px;
+        font-size: clamp(32px, 9vw, 42px);
     }
 
-    .contact-info h2 {
-        font-size: 26px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 14px;
-        font-size: 14px;
-    }
-
-    /* FOOTER */
-    .footer {
-        padding: 40px 15px 22px;
-    }
-
-    .footer-logo {
-        font-size: 26px;
-    }
-
-    .footer-links {
-        gap: 16px;
-    }
-
-    .copyright {
-        line-height: 22px;
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 36px;
     }
 }
 
+
+/* RAJVERSE - MOBILE NAVBAR FIX */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .menu {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .small {
+        font-size: 15px;
+        letter-spacing: 1px;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+}
